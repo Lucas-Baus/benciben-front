@@ -1,0 +1,252 @@
+:root {
+  --primary: #87CEFA;
+  --accent: #0056b3;
+  --dark: #1a1a1a;
+  --light: #f4f7f6;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #EFE9DC ;
+}
+
+/* Contenedor padre para centrar todo */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado horizontal */
+  width: 100%;
+}
+
+.main-header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.main-header h1 span { color: var(--accent); }
+
+/* Contenedor con ancho limitado para que el grid no se desparrame */
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.mundial-banner {
+  /* La ruta empieza desde la raíz de la carpeta public */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                    url('/productos/messi.jpg'); 
+  
+  background-size: cover;       /* Importante: para que la foto cubra todo el banner */
+  background-position: center;  /* Para que Messi quede centrado */
+  color: white;
+  border-radius: 15px;
+  padding: 80px 50px;           /* Un poco más de aire arriba y abajo */
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* GRID DE 4 COLUMNAS REALES */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas fijas en web */
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto 60px auto;
+  justify-content: center;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  /* SIN TRANSFORMS PARA EVITAR EL SALTO */
+}
+
+/* SLIDE SOLO POR HOVER (Sigue igual) */
+.slide-wrapper { width: 100%; height: 250px; overflow: hidden; position: relative; }
+.photos-container { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
+.photos-container.items-3 { width: 300%; }
+.photos-container.items-2 { width: 200%; }
+.product-img { width: 100%; height: 100%; object-fit: cover; }
+
+.product-card:hover .photos-container.items-3 { animation: slide3 5s infinite alternate ease-in-out; }
+@keyframes slide3 {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(-33.333%); }
+  90% { transform: translateX(-66.666%); }
+}
+
+.card-info { padding: 15px; text-align: center; }
+.mail-button {
+  background: var(--primary); color: white; border: none; padding: 10px;
+  width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;
+}
+
+/* FORMULARIO CENTRADO */
+.contact-form-area {
+  background: white; padding: 40px; border-radius: 15px;
+  max-width: 600px; margin: 0 auto 80px auto; /* Centrado con margin auto */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.input-group { display: flex; gap: 10px; margin-bottom: 10px; }
+.full-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px; box-sizing: border-box; }
+.input-group input, textarea { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+
+.submit-btn {
+  width: 100%; background: var(--dark); color: white; padding: 15px; border: none; border-radius: 8px; cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 850px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { 
+  .product-grid { grid-template-columns: 1fr; }
+  .product-card { max-width: 300px; margin: 0 auto; }
+  .input-group { flex-direction: column; }
+}
+/* 1. Contenedor de la Card */
+.product-card {
+  background: #ffffff;
+  border-radius: 20px; /* Bordes bien redondeados como en la imagen */
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+/* 2. El área de la Foto (Más alta y vertical) */
+.slide-wrapper {
+  width: 100%;
+  height: 380px; /* Altura aumentada para el look vertical 📏 */
+  overflow: hidden;
+  position: relative;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que la gorra se vea perfecta sin estirarse 🧢 */
+}
+
+/* 3. Información del Producto (Compacta) */
+.card-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
+}
+
+/* 4. Mini Cuadro de Detalles (Mínimo y Color) */
+.product-details-box {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.detail-item span {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.detail-item strong {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* 5. Precio Destacado */
+.product-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 5px 0;
+}
+
+/* 6. Botón de WhatsApp Estilo "Capsule" */
+.wa-button {
+  background: #87CEFA;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+
+.wa-button:hover {
+  background: #7DB2F1;
+}
+.presentation-section {
+  padding: 60px 20px;
+  background-color: #f8f9fa; /* Un gris muy clarito para separar secciones */
+  text-align: center;
+}
+
+.presentation-content h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-item span {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.feature-item h4 {
+  margin-bottom: 10px;
+  color: #222;
+}
