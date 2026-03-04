@@ -71,11 +71,10 @@ export default function App() {
     };
 
     try {
-      // Cambiaremos 'localhost' por la URL de Render cuando hagamos el deploy
-      const response = await fetch('http://localhost:5000/api/consulta', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos),
+  const response = await fetch('https://benciben-back.onrender.com/api/consulta', { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos),
       });
 
       if (response.ok) {
